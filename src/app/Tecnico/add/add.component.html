@@ -1,0 +1,64 @@
+<div class="card">
+    <h5 class="card-header">{{ titulo }}</h5>
+    <div class="card-body">
+        <form >
+            <div class="from-group row">
+                <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" [(ngModel)]="tecnico.nombre" name="nombre" required #nombre= "ngModel">
+                    <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+                        <div *ngIf = "nombre.errors">
+                            El Nombre es Requerido
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="from-group row">
+                <label for="Apellido" class="col-form-label col-sm-2">Apellido</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="apellido" [(ngModel)]="tecnico.apellido" required #apellido ="ngModel">
+                    <div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+                        <div *ngIf = "apellido.errors">
+                            El Apellido es Requerido
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="from-group row">
+                <label for="" class="col-form-label col-sm-2">Telefono</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="telefono" [(ngModel)]="tecnico.telefono" required minlength="10" maxlength="10" #telefono ="ngModel">
+                    <div class="alert alert-danger" *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
+                        <div>
+                            El Telefono es Requerido
+                        </div>
+                        <div *ngIf="telefono.errors && telefono.errors.maxlength">
+                            maximo 10 caracteres
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="from-group row">
+                <label for="" class="col-form-label col-sm-2">Correo</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="email" [(ngModel)]="tecnico.email" required>
+                </div>
+            </div>
+
+            <div class="from-group row">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary" role="button" (click) = "create()" *ngIf="!tecnico.id else elseBlock">Crear</button>
+
+                    <ng-template #elseBlock>
+                        <button class="btn btn-primary" role="button" (click) = "update()">Editar</button>
+                    </ng-template>
+                    
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
