@@ -23,6 +23,11 @@ export class TecnicoService {
   create(tecnico: Tecnico) :Observable<any> {
     return this.http.post<any>(this.urlEndPoint, tecnico, {headers: this.httpHeaders}).pipe(
       catchError(e=>{
+
+
+        if(e.status === 400){
+          return throwError(e);
+        }
         console.error(e.error.mensaje);
         Swal.fire(
           e.error.mensaje,
@@ -51,6 +56,10 @@ export class TecnicoService {
   update(tecnico: Tecnico): Observable<any>{
     return this.http.put<any>(`${this.urlEndPoint}/${tecnico.id}`, tecnico, { headers : this.httpHeaders}).pipe(
       catchError(e=>{
+
+        if(e.status === 400){
+          return throwError(e);
+        }
         console.error(e.error.mensaje);
         Swal.fire(
           e.error.mensaje,

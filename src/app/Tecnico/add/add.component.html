@@ -1,11 +1,16 @@
+<ul class="alert alert-danger" *ngIf="errores?.length > 0">
+    <li *ngFor="let erro of errores">
+        {{ erro }}
+    </li>
+</ul>
 <div class="card">
     <h5 class="card-header">{{ titulo }}</h5>
     <div class="card-body">
-        <form >
+        <form #tecnicoform = "ngForm">
             <div class="from-group row">
                 <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)]="tecnico.nombre" name="nombre" required #nombre= "ngModel">
+                    <input type="text" class="form-control" [(ngModel)]="tecnico.nombre" name="nombre"  #nombre= "ngModel">
                     <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
                         <div *ngIf = "nombre.errors">
                             El Nombre es Requerido
@@ -17,9 +22,9 @@
             <div class="from-group row">
                 <label for="Apellido" class="col-form-label col-sm-2">Apellido</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="apellido" [(ngModel)]="tecnico.apellido" required #apellido ="ngModel">
+                    <input type="text" class="form-control" name="apellido" [(ngModel)]="tecnico.apellido"  #apellido ="ngModel">
                     <div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
-                        <div *ngIf = "apellido.errors">
+                        <div *ngIf = "apellido.errors.required">
                             El Apellido es Requerido
                         </div>
                     </div>
@@ -29,13 +34,13 @@
             <div class="from-group row">
                 <label for="" class="col-form-label col-sm-2">Telefono</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="telefono" [(ngModel)]="tecnico.telefono" required minlength="10" maxlength="10" #telefono ="ngModel">
+                    <input type="number" class="form-control" name="telefono" [(ngModel)]="tecnico.telefono"  minlength="10" maxlength="10" #telefono ="ngModel">
                     <div class="alert alert-danger" *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)">
-                        <div>
+                        <div *ngIf = "telefono.errors.required">
                             El Telefono es Requerido
                         </div>
-                        <div *ngIf="telefono.errors && telefono.errors.maxlength">
-                            maximo 10 caracteres
+                        <div *ngIf="telefono.errors.minlength && telefono.errors.maxlength">
+                            minimo y maximo 10 caracteres
                         </div>
                     </div>
                 </div>
@@ -44,16 +49,24 @@
             <div class="from-group row">
                 <label for="" class="col-form-label col-sm-2">Correo</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" name="email" [(ngModel)]="tecnico.email" required>
+                    <input type="text" class="form-control" name="email" [(ngModel)]="tecnico.email"  #email ="ngModel">
+                    <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+                        <div *ngIf="email.errors.required">
+                            El Correo es Requerido
+                        </div>
+                        <div *ngIf="email.errors.email">
+                            El correo no es valido
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="from-group row">
                 <div class="col-sm-6">
-                    <button class="btn btn-primary" role="button" (click) = "create()" *ngIf="!tecnico.id else elseBlock">Crear</button>
+                    <button class="btn btn-primary" role="button" (click) = "create()" *ngIf="!tecnico.id else elseBlock" [disabled]= "!tecnicoform.form.valid">Crear</button>
 
                     <ng-template #elseBlock>
-                        <button class="btn btn-primary" role="button" (click) = "update()">Editar</button>
+                        <button class="btn btn-primary" role="button" (click) = "update()" >Editar</button>
                     </ng-template>
                     
                 </div>
