@@ -21,6 +21,7 @@ export class TecnicoService {
   }
 
   create(tecnico: Tecnico) :Observable<any> {
+    console.log(tecnico);
     return this.http.post<any>(this.urlEndPoint, tecnico, {headers: this.httpHeaders}).pipe(
       catchError(e=>{
 

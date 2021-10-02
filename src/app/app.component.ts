@@ -18,5 +18,14 @@ export class AppComponent {
     nuevo(){
       this.router.navigate(['add']);
     }
+
+    listarServicio(){
+      this.router.navigate(['listarServicio']);
+    }
+
+    nuevoServicio(){
+      this.router.navigate(['crearServicio']);
+    }
+    
   
 }

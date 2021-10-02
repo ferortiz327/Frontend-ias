@@ -24,6 +24,7 @@
                         <td>{{ item.telefono }}</td>
                         <td>                            
                             <button class="btn btn-warning" (click)="editar(item.id)" >Editar</button>
+                            <button class="btn btn-success" (click)="detalle(item.id)" style="margin-left: 10px;">Ver Servicios</button>
                             <button class="btn btn-danger" (click)="delete(item)" style="margin-left: 10px;">Eliminar</button>
                         </td>
                     </tr>

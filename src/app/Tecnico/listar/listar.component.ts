@@ -60,4 +60,7 @@ export class ListarComponent implements OnInit {
       }
     })
   }
+  detalle(id : any){
+    this.router.navigate(['listarServicio', id]);
+  }
 }

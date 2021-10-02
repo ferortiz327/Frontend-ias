@@ -4,10 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { ListarComponent } from './Tecnico/listar/listar.component';
 import { AddComponent } from './Tecnico/add/add.component';
-import { EditarComponent } from './Tecnico/editar/editar.component';
+import { DetalleComponent } from './Tecnico/destalle/detalle.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ServicioComponent } from './servicio/servicio.component';
+import { CrearComponent } from './servicio/crear/crear.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     ListarComponent,
     AddComponent,
-    EditarComponent,
+    DetalleComponent,
+    ServicioComponent,
+    CrearComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,65 @@
+<ul class="alert alert-danger" *ngIf="errores?.length > 0">
+    <li *ngFor="let erro of errores">
+        {{ erro }}
+    </li>
+</ul>
+<div class="card">
+    <h5 class="card-header"></h5>
+    <div class="card-body">
+        <form #servicioform = "ngForm">
+            <div class="from-group row">
+                <label for="descripcion" class="col-form-label col-sm-2">descripcion</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="descripcion"  [(ngModel)]="servicio.descripcion" #descripcion= "ngModel">
+                    <div class="alert alert-danger" *ngIf="descripcion.invalid && (descripcion.dirty || descripcion.touched)">
+                        <div *ngIf = "descripcion.errors.required">
+                            La Descripción es Requerida
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="from-group row">
+                <label for="" class="col-form-label col-sm-2">Fecha de Inicio</label>
+                <div class="col-sm-6">
+                    <input type="date" class="form-control" name="fechaInicio" [(ngModel)]="servicio.fechaInicio" #fechaInicio= "ngModel">
+                    <div class="alert alert-danger" *ngIf="fechaInicio.invalid && (fechaInicio.dirty || fechaInicio.touched)">
+                        <div *ngIf = "fechaInicio.errors.required">
+                            La fecha inicial es Requerida
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="from-group row">
+                <label for="" class="col-form-label col-sm-2">Fecha Final</label>
+                <div class="col-sm-6">
+                    <input type="date" class="form-control" name="fechaFinal" [(ngModel)]="servicio.fechaFinal" #fechaFinal= "ngModel">
+                    <div class="alert alert-danger" *ngIf="fechaFinal.invalid && (fechaFinal.dirty || fechaFinal.touched)">
+                        <div *ngIf = "fechaFinal.errors.required">
+                            La fecha final es Requerida
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="from-group row">
+                <label for="" class="col-form-label col-sm-2">Fecha</label>
+                <div class="col-sm-6">
+                    <select name="tecnico" id="" class="form-control" [(ngModel)]="servicio.tecnico">
+                        <option [ngValue] = "undefined">---Seleccione el técnico---</option>
+                        <option *ngFor="let tecnico of tecnicos" [ngValue] = "tecnico">{{ tecnico.nombre }} {{ tecnico.apellido }}</option>
+                    </select>
+
+                </div>
+            </div>
+
+            <div class="from-group row">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary" role="button" (click)="createsServicio()" [disabled]= "!servicioform.form.valid">Crear</button> 
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

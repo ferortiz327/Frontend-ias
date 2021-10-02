@@ -6,5 +6,5 @@ export class Tecnico{
     apellido ?: string;
     telefono ?: string;
     email ?: string;
-    servicio : Servicio[] = [];
+    servicio ?: Array<Servicio> = [];
 }
